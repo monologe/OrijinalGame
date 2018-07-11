@@ -22,9 +22,12 @@ public class CameraWork : MonoBehaviour
     // シーン中にフレーム毎に呼ばれる関数
     void LateUpdate()
     {
-        Vector3 newPosition = transform.position;
-        newPosition.x = unitychan.transform.position.x + offset.x;
-        newPosition.z = unitychan.transform.position.z + offset.z;
-        transform.position = newPosition;
+        if( unitychan != null)
+        {
+            Vector3 newPosition = transform.position;
+            newPosition.x = unitychan.transform.position.x + offset.x;
+            newPosition.z = unitychan.transform.position.z + offset.z;
+            transform.position = newPosition;
+        }
     }
 }

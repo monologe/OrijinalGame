@@ -10,6 +10,7 @@ TagManager:
   - GameOverTag
   - TapAnywhereTag
   - Groun
+  - BGMTag
   layers:
   - Default
   - TransparentFX

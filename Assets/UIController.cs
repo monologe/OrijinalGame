@@ -45,5 +45,12 @@ public class UIController : MonoBehaviour
         this.continueText.GetComponent<Text>().text = "Please Tap Anywhere";
 
         this.isGameOver = true;
+    }  
+    
+    //　スタートボタンを押したら実行する
+    public void GameStart()
+    {
+        SceneManager.LoadScene("GameScene");
     }
 }
+ 

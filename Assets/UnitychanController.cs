@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UnitychanController : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class UnitychanController : MonoBehaviour
 
     // ゲームオーバになる位置
     private float deadLine = -9;
+    
     // Use this for initialization
     void Start()
     {
@@ -30,19 +32,19 @@ public class UnitychanController : MonoBehaviour
         this.animator = GetComponent<Animator>();
         // Rigidbody2Dのコンポーネントを取得する
         this.rigid2D = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        //スタート表示
+        //ロードシーン作成
 
 
         //
-
-        // xの正方向にscrollスピードで移動
-        rigid2D.velocity = new Vector2(scroll, rigid2D.velocity.y);
+    // xの正方向にscrollスピードで移動
+    rigid2D.velocity = new Vector2(scroll, rigid2D.velocity.y);
         // 走るアニメーションを再生するために、Animatorのパラメータを調節する
         this.animator.SetFloat("Horizontal", 1f);
         // 着地しているかどうかを調べる
@@ -60,22 +62,38 @@ public class UnitychanController : MonoBehaviour
         {
             // UIControllerのGameOver関数を呼び出して画面上に「GameOver」と表示する
             GameObject.FindWithTag("GameOverTag").GetComponent<UIController>().GameOver();
+            if (Input.GetMouseButtonDown(0))
+            {
+                SceneManager.LoadScene("GameScene");
+            }
+
+            GameObject.FindWithTag("BGMTag").GetComponent<AudioSource>().volume =0;
             // ユニティちゃんを破棄する
             Destroy(gameObject);
         }
 
-        //障害物とぶつかってゲームオーバー
-        void OnCollisionEnter(Collision collision)
+
+    }
+    public void LoadScene()
+    {
+        //リトライボタンを押してリスタートさせる
+        if (Input.GetMouseButtonDown(0))
         {
-            if (collision.gameObject.name == "オブジェクト名")
-            {
-                Application.LoadLevel("gameover");
-                GameObject.FindWithTag("GameOverTag").GetComponent<UIController>().GameOver();
-            }
+            SceneManager.LoadScene("GameScene");
+        }
+    }
+    //障害物とぶつかってゲームオーバー
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Rock_02")
+        {
+
+            Application.LoadLevel("gameover");
+            GameObject.FindWithTag("GameOverTag").GetComponent<UIController>().GameOver();
+           
         }
     }
 }
-
 
     public class SpeedController : MonoBehaviour
     {
