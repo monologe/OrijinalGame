@@ -10,9 +10,6 @@ public class TitleUnitychan : MonoBehaviour
     //Unityちゃんを移動させるコンポーネントを入れる
     Rigidbody2D rigid2D;
 
-    float jumpVelocity = 20;
-
-
     // Use this for initialization
     void Start () 
 

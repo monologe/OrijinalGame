@@ -1209,6 +1209,10 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6100000, guid: 1355a58c3bd9c40679bea54b926e0179, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400000, guid: 1355a58c3bd9c40679bea54b926e0179, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1355a58c3bd9c40679bea54b926e0179, type: 2}
@@ -1229,6 +1233,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scroll: 4
+--- !u!70 &1429402738
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429402731}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.09, y: -0.2}
+  m_Size: {x: 1.3, y: 2.5}
+  m_Direction: 0
 --- !u!1001 &1452767549
 Prefab:
   m_ObjectHideFlags: 0
