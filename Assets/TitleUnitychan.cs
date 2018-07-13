@@ -10,25 +10,17 @@ public class TitleUnitychan : MonoBehaviour
     //Unityちゃんを移動させるコンポーネントを入れる
     Rigidbody2D rigid2D;
 
+    // 地面の位置
+    private float groundLevel = -3.0f;
+
     // Use this for initialization
-    void Start () 
+    void Start()
 
     {
-    // アニメータのコンポーネントを取得する
-    this.animator = GetComponent<Animator>();
+        // アニメータのコンポーネントを取得する
+        this.animator = GetComponent<Animator>();
+        // 着地しているかどうかを調べる
+        bool isGround = (transform.position.y > this.groundLevel) ? false : true;
+        this.animator.SetBool("isGround", isGround);
     }
-
-		
-	
-	
-	// Update is called once per frame
-	void Update () {
-
-        if (Input.GetMouseButtonDown(0))
-            {
-                SceneManager.LoadScene("GameScene");
-            }	
-	}
 }
-
-

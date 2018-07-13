@@ -25,7 +25,9 @@ public class UnitychanController : MonoBehaviour
     // ゲームオーバになる位置
     private float deadLine = -9;
 
-
+    //GameOverを
+    public bool isGameOver = false;
+        
     // Use this for initialization
     void Start()
     {
@@ -33,18 +35,28 @@ public class UnitychanController : MonoBehaviour
         this.animator = GetComponent<Animator>();
         // Rigidbody2Dのコンポーネントを取得する
         this.rigid2D = GetComponent<Rigidbody2D>();
-
+        //ロード
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //ロードシーン作成
-
-        
         // xの正方向にscrollスピードで移動
-        rigid2D.velocity = new Vector2(scroll, rigid2D.velocity.y);
+        if (!isGameOver)
+        {
+            //GameOverの処理
+            rigid2D.velocity = new Vector2(scroll, rigid2D.velocity.y);
+        }
+        if (Music.IsJustChangedAt(0, 0, 0))
+        {
+            isGameOver = true;
+        }
+
+        if (Music.IsJustChangedAt(8, 0, 0))
+        {
+            isGameOver = false;
+        }
+
         // 走るアニメーションを再生するために、Animatorのパラメータを調節する
         this.animator.SetFloat("Horizontal", 1f);
         // 着地しているかどうかを調べる
@@ -59,12 +71,15 @@ public class UnitychanController : MonoBehaviour
 
 
 
+
             //画面外に出てゲームオーバー
             if (transform.position.y < this.deadLine)
             {
                 // UIControllerのGameOver関数を呼び出して画面上に「GameOver」と表示する
                 GameObject.FindWithTag("GameOverTag").GetComponent<UIController>().GameOver();
-                if (Input.GetMouseButtonDown(0))
+                isGameOver = true;
+            this.animator.SetFloat("Horizontal", 0f);
+            if (Input.GetMouseButtonDown(0))
                 {
                     SceneManager.LoadScene("GameScene");
                 }
@@ -76,6 +91,7 @@ public class UnitychanController : MonoBehaviour
     }
 
 
+
     //障害物とぶつかってゲームオーバー
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -83,11 +99,28 @@ public class UnitychanController : MonoBehaviour
         {
             // UIControllerのGameOver関数を呼び出して画面上に「GameOver」と表示する
             GameObject.FindWithTag("GameOverTag").GetComponent<UIController>().GameOver();
+            isGameOver = true;
             //BGMを止める
             GameObject.FindWithTag("BGMTag").GetComponent<AudioSource>().volume = 0;
             //ユニティちゃんを停止させる
+            rigid2D.velocity = new Vector2(0, 0);
+            GetComponent<Animator>().SetTrigger("Damage Layer");
+        }
+
+        if (collision.gameObject.name == "Uni")
+        {
+            // UIControllerのGameOver関数を呼び出して画面上に「GameOver」と表示する
+            GameObject.FindWithTag("GameOverTag").GetComponent<UIController>().GameOver();
+            //BGMを止める
+            GameObject.FindWithTag("BGMTag").GetComponent<AudioSource>().volume = 0;
+            isGameOver = true;
+            //ユニティちゃんを停止させる
+            rigid2D.velocity = new Vector2(0, 0);
+            GetComponent<Animator>().SetTrigger("idleTrigger");
         }
     }
+    
+
 
     public class SpeedController : MonoBehaviour
     {
@@ -106,4 +139,3 @@ public class UnitychanController : MonoBehaviour
         }
     }
 }
-  
