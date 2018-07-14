@@ -25,7 +25,7 @@ public class CountDownController : MonoBehaviour
         //カウントダウンスクリプト
         if (isCount)
         {
-            totalTime -= Time.deltaTime;
+            totalTime -=  2 * Time.deltaTime;
             seconds = (int)totalTime;
             this.CountdownText.GetComponent<Text>().text = seconds.ToString();
             if (totalTime <= 1)
@@ -35,7 +35,7 @@ public class CountDownController : MonoBehaviour
             }
         }
 
-        if (Music.IsJustChangedAt(3, 0, 0))
+        if (Music.IsJustChangedAt(3, 1, 0))
         {
             isCount = true;
         }

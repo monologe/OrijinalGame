@@ -57,19 +57,10 @@ public class UIController : MonoBehaviour
             // クリックされたらシーンをロードする
             if (Input.GetMouseButtonDown(0))
             {
-                //GameSceneを読み込む（追加）
+                //GameSceneを読み込む
                 SceneManager.LoadScene("GameScene");
             }
         }
-    }
-
-    public void GameLoad()
-    {
-        // ゲームオーバになったときに、画面上にゲームオーバを表示する
-        this.gameOverText.GetComponent<Text>().text = "GameOver!!";
-        this.continueText.GetComponent<Text>().text = "Please Tap Anywhere";
-
-        this.isGameOver = true;
     }
 
     public void GameOver()
@@ -86,6 +77,7 @@ public class UIController : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
     }
+
 
     //フェードインスクリプト
     public class Fade : MonoBehaviour
