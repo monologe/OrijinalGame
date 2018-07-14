@@ -9,10 +9,18 @@ public class EnemyController : MonoBehaviour
     //Uniを移動させるコンポーネントを入れる
     Rigidbody2D rigid2D;
 
-    public float amplitude = 1f; // 振幅
-    private int frameCnt = 0; // フレームカウント
+    //浮遊(通常)
+    // 振幅
+    public float amplitude = 0.01f;
+    // フレームカウント
+    private int frameCnt = 0;
+    //浮遊判定
+    public bool isfluff = false;
 
-    public bool isescape = false;
+    public GameObject GameObject { get; private set; }
+
+
+
 
     // Use this for initialization
     void Start()
@@ -26,7 +34,9 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isescape)
+
+        //浮遊(通常)
+        if (!isfluff)
         {
             frameCnt += 1;
             if (10000 <= frameCnt)
@@ -40,32 +50,17 @@ public class EnemyController : MonoBehaviour
                 iTween.MoveAdd(gameObject, new Vector3(0, amplitude * posYSin, 0), 0.0f);
             }
         }
-        // 指定した小節、拍、ユニットに来たフレームで true になる
-        if (Music.IsJustChangedAt(1, 2, 3))
-        {
-            GameObject cube = GameObject.Find("cube");
-            isescape = true;
-        }
-        if (Music.IsJustChangedAt(23, 3, 3))
-        { }
 
-        if (Music.IsJustChangedAt(1, 2, 3))
-        { }
-        if (Music.IsJustChangedAt(1, 2, 3))
-        { }
-        if (Music.IsJustChangedAt(1, 2, 3))
-        { }
-        if (Music.IsJustChangedAt(1, 2, 3))
-        { }
-        if (Music.IsJustChangedAt(1, 2, 3))
-        { }
-        if (Music.IsJustChangedAt(1, 2, 3))
-        { }
-        if (Music.IsJustChangedAt(1, 2, 3))
-        { }
-        if (Music.IsJustChangedAt(1, 2, 3))
-        { }
-        if (Music.IsJustChangedAt(1, 2, 3))
-        { }
+        // 指定した小節、拍、ユニットに来たフレームで true になる
+        if (Music.IsJustChangedAt(7, 2, 3))
+        {
+            GameObject = GameObject.Find("Uni");
+            isfluff = true;
+            iTween.MoveTo(this.gameObject, iTween.Hash("y", 5f));
+        }
+        if (Music.IsJustChangedAt(8, 2, 3)) ;
+        {
+
+        }
     }
 }

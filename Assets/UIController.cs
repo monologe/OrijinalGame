@@ -6,13 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
+    //ゲームスタートテキスト
+    private GameObject SongNameText;
+    private GameObject AreYouReadyText;
 
     // ゲームオーバテキスト
     private GameObject gameOverText;
     private GameObject continueText;
-
     // ゲームオーバの判定
     private bool isGameOver = false;
+
+    //
+
 
     // Use this for initialization
     void Start()
@@ -20,7 +25,8 @@ public class UIController : MonoBehaviour
         // シーンビューからオブジェクトの実体を検索する
         this.gameOverText = GameObject.FindWithTag("GameOverTag");
         this.continueText = GameObject.FindWithTag("TapAnywhereTag");
-
+        this.SongNameText = GameObject.Find("SongName");
+        this.AreYouReadyText = GameObject.Find("AreYouReady");
     }
 
     // Update is called once per frame
@@ -38,6 +44,15 @@ public class UIController : MonoBehaviour
         }
     }
 
+    public void GameLoad()
+    {
+        // ゲームオーバになったときに、画面上にゲームオーバを表示する
+        this.gameOverText.GetComponent<Text>().text = "GameOver!!";
+        this.continueText.GetComponent<Text>().text = "Please Tap Anywhere";
+
+        this.isGameOver = true;
+    }
+
     public void GameOver()
     {
         // ゲームオーバになったときに、画面上にゲームオーバを表示する
@@ -45,12 +60,44 @@ public class UIController : MonoBehaviour
         this.continueText.GetComponent<Text>().text = "Please Tap Anywhere";
 
         this.isGameOver = true;
-    }  
-    
+    }
+
     //　スタートボタンを押したら実行する
     public void GameStart()
     {
         SceneManager.LoadScene("GameScene");
     }
+
+    //フェードインスクリプト
+    public class Fade : MonoBehaviour
+    {
+        public GameObject Panel;
+        float a;
+
+        void Start()
+        {
+            a = Panel.GetComponent<Image>().color.a;
+        }
+
+        //Aキーを押されたらフェード開始
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                StartCoroutine(FadePanel());
+            }
+        }
+
+        //フェードアウト自体は↓の処理
+        IEnumerator FadePanel()
+        {
+            while (a < 1)
+            {
+                Panel.GetComponent<Image>().color += new Color(0, 0, 0, 0.01f);
+                a += 0.01f;
+                yield return null;
+            }
+        }
+    }
 }
- 
+  

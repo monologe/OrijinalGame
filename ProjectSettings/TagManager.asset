@@ -12,6 +12,7 @@ TagManager:
   - Groun
   - BGMTag
   - EnemyTag
+  - CountdownTag
   layers:
   - Default
   - TransparentFX
