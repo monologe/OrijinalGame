@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     // ゲームオーバテキスト
     private GameObject gameOverText;
     private GameObject continueText;
+
     // ゲームオーバの判定
     private bool isGameOver = false;
 
