@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
     // ゲームオーバテキスト
-    private GameObject gameOverText;
-    private GameObject continueText;
-    private GameObject HomeText;
+    public GameObject gameOverText;
+    public GameObject continueText;
+    public GameObject HomeText;
+    public GameObject StartText;
 
     // ゲームオーバの判定
     private bool isGameOver = false;
@@ -19,7 +20,9 @@ public class UIController : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    { }
+    {
+        ShowUI(false);
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,17 +30,19 @@ public class UIController : MonoBehaviour
 
     public void GameOver()
     {
-        // シーンビューからオブジェクトの実体を検索する
-        this.gameOverText = GameObject.FindWithTag("GameOverTag");
-        this.continueText = GameObject.FindWithTag("TapAnywhereTag");
-        this.HomeText = GameObject.FindWithTag("HomeTag");
-        // ゲームオーバになったときに、画面上にゲームオーバを表示する
-        this.gameOverText.GetComponent<Text>().text = "GameOver!!";
-        this.continueText.GetComponent<Text>().text = "Retry?";
-        this.HomeText.GetComponent<Text>().text = "Home?";
-
+        ShowUI(true);
         this.isGameOver = true;
     }
+
+    void ShowUI(bool isActive)
+    {
+        gameOverText.SetActive(isActive);
+        continueText.SetActive(isActive);
+        HomeText.SetActive(isActive);
+
+        StartText.SetActive(isActive);
+    }
+
 
     //　スタートボタンを押したら実行する
     public void GameStart()
@@ -52,5 +57,4 @@ public class UIController : MonoBehaviour
         isGame = false;
     }
 
- 
-  
+}

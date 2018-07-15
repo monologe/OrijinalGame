@@ -354,6 +354,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f71af97abbe314cb08f17fd300228d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverText: {fileID: 0}
+  continueText: {fileID: 0}
+  HomeText: {fileID: 0}
+  StartText: {fileID: 446157578}
   isGame: 0
 --- !u!114 &446157583
 MonoBehaviour:
