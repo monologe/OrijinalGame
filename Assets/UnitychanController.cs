@@ -88,10 +88,7 @@ public class UnitychanController : MonoBehaviour
             GameObject.FindWithTag("BGMTag").GetComponent<AudioSource>().volume = 0;
             // ユニティちゃんを破棄する
             Destroy(gameObject);
-            if (Input.GetMouseButtonDown(0))
-                { 
-                    SceneManager.LoadScene("GameScene");
-                }
+          
         }  
     }
 
@@ -110,10 +107,7 @@ public class UnitychanController : MonoBehaviour
             rigid2D.velocity = new Vector2(0, 0);
             GetComponent<Animator>().SetTrigger("Damage Layer");
             //タップでコンティニュー
-            if (Input.GetMouseButtonDown(0))
-            {
-                SceneManager.LoadScene("GameScene");
-            }
+       
         }
         if (collision.gameObject.name == "Uni")
         {
@@ -125,10 +119,7 @@ public class UnitychanController : MonoBehaviour
             //ユニティちゃんを停止させる
             rigid2D.velocity = new Vector2(0, 0);
             GetComponent<Animator>().SetTrigger("idleTrigger");
-            if (Input.GetMouseButtonDown(0))
-            {
-                SceneManager.LoadScene("GameScene");
-            }
+     
         }
     }
     

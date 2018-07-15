@@ -13,6 +13,8 @@ TagManager:
   - BGMTag
   - EnemyTag
   - CountdownTag
+  - RockTag
+  - HomeTag
   layers:
   - Default
   - TransparentFX

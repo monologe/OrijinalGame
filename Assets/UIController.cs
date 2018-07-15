@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour
     // ゲームオーバテキスト
     private GameObject gameOverText;
     private GameObject continueText;
+    private GameObject HomeText;
 
     // ゲームオーバの判定
     private bool isGameOver = false;
@@ -22,28 +23,20 @@ public class UIController : MonoBehaviour
         // シーンビューからオブジェクトの実体を検索する
         this.gameOverText = GameObject.FindWithTag("GameOverTag");
         this.continueText = GameObject.FindWithTag("TapAnywhereTag");
+        this.HomeText = GameObject.FindWithTag("HomeTag");
     }
 
     // Update is called once per frame
     void Update()
     {
-        // ゲームオーバーになった場合
-        if (this.isGameOver)
-        {
-            // クリックされたらシーンをロードする
-            if (Input.GetMouseButtonDown(0))
-            {
-                //GameSceneを読み込む
-                SceneManager.LoadScene("GameScene");
-            }
-        }
     }
 
     public void GameOver()
     {
         // ゲームオーバになったときに、画面上にゲームオーバを表示する
         this.gameOverText.GetComponent<Text>().text = "GameOver!!";
-        this.continueText.GetComponent<Text>().text = "Please Tap Anywhere";
+        this.continueText.GetComponent<Text>().text = "Retry?";
+        this.HomeText.GetComponent<Text>().text = "Home?";
 
         this.isGameOver = true;
     }
@@ -53,6 +46,12 @@ public class UIController : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
         isGame = true;
+    }
+
+    public void Home()
+    {
+        SceneManager.LoadScene("SampleScene1");
+        isGame = false;
     }
 }
   
