@@ -7690,6 +7690,7 @@ MonoBehaviour:
   gameOverText: {fileID: 1099829334}
   continueText: {fileID: 1856866976}
   HomeText: {fileID: 1196728729}
+  StartText: {fileID: 0}
   isGame: 0
 --- !u!4 &1707550313
 Transform:
@@ -8636,7 +8637,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1707550312}
-        m_MethodName: GameStart
+        m_MethodName: Continue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

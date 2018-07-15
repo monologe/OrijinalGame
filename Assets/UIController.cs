@@ -39,14 +39,14 @@ public class UIController : MonoBehaviour
         gameOverText.SetActive(isActive);
         continueText.SetActive(isActive);
         HomeText.SetActive(isActive);
-
-        StartText.SetActive(isActive);
     }
 
 
     //　スタートボタンを押したら実行する
-    public void GameStart()
+    public void GameStart(bool isActive)
     {
+
+        StartText.SetActive(isActive);
         SceneManager.LoadScene("GameScene");
         isGame = true;
     }
@@ -57,4 +57,9 @@ public class UIController : MonoBehaviour
         isGame = false;
     }
 
-}
+    public void Continue()
+    {
+        SceneManager.LoadScene("GameScene");
+        isGame = true;
+    }
+}   
