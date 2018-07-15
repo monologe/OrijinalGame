@@ -29,5 +29,6 @@ public class CameraWork : MonoBehaviour
             newPosition.z = unitychan.transform.position.z + offset.z;
             transform.position = newPosition;
         }
+        
     }
 }

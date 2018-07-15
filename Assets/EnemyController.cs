@@ -50,17 +50,16 @@ public class EnemyController : MonoBehaviour
                 iTween.MoveAdd(gameObject, new Vector3(0, amplitude * posYSin, 0), 0.0f);
             }
         }
-
-        // 指定した小節、拍、ユニットに来たフレームで true になる
+    }
+    // 指定した小節、拍、ユニットに来たフレームで true になる
+    public void escape()
+    {
         if (Music.IsJustChangedAt(7, 2, 3))
         {
             GameObject = GameObject.Find("Uni");
             isfluff = true;
             iTween.MoveTo(this.gameObject, iTween.Hash("y", 5f));
         }
-        if (Music.IsJustChangedAt(8, 2, 3)) ;
-        {
 
-        }
     }
 }
