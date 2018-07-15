@@ -19,20 +19,18 @@ public class UIController : MonoBehaviour
 
     // Use this for initialization
     void Start()
+    { }
+
+    // Update is called once per frame
+    void Update()
+    { }
+
+    public void GameOver()
     {
         // シーンビューからオブジェクトの実体を検索する
         this.gameOverText = GameObject.FindWithTag("GameOverTag");
         this.continueText = GameObject.FindWithTag("TapAnywhereTag");
         this.HomeText = GameObject.FindWithTag("HomeTag");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    public void GameOver()
-    {
         // ゲームオーバになったときに、画面上にゲームオーバを表示する
         this.gameOverText.GetComponent<Text>().text = "GameOver!!";
         this.continueText.GetComponent<Text>().text = "Retry?";
@@ -53,5 +51,6 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene("SampleScene1");
         isGame = false;
     }
-}
+
+ 
   

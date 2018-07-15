@@ -8,11 +8,13 @@ public class GameStartScript : MonoBehaviour {
     //ゲームスタートテキスト
     private GameObject SongNameText;
     private GameObject AreYouReadyText;
+    private GameObject SongNameSampleText;
 
     // Use this for initialization
     void Start () {
         this.SongNameText = GameObject.Find("SongName");
         this.AreYouReadyText = GameObject.Find("AreYouReady");
+        this.SongNameSampleText = GameObject.Find("SongNameSample");
     }
 	
 	// Update is called once per frame
@@ -20,11 +22,15 @@ public class GameStartScript : MonoBehaviour {
         //スタート前
         if (Music.IsJustChangedAt(0, 0, 0))
         {
-            this.SongNameText.GetComponent<Text>().text = "Song Name 夏の秘密基地";
+            this.SongNameText.GetComponent<Text>().text = "Song Name";
+            this.SongNameSampleText.GetComponent<Text>().text = "Summer Secret Base";
+            
         }
         if (Music.IsJustChangedAt(1, 3, 3))
         {
             Destroy(GameObject.Find("SongName"));
+            Destroy(GameObject.Find("SongNameSample"));
+
         }
         if (Music.IsJustChangedAt(2, 0, 0))
         {
